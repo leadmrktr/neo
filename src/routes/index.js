@@ -16,6 +16,11 @@ const Login = Loadable({
   loading: Loader
 })
 
+const Signup = Loadable({
+  loader: () => import('./Signup' /* webpackChunkName: 'signup' */),
+  loading: Loader
+})
+
 const PageNotAvailable = Loadable({
   loader: () => import('./PageNotAvailable' /* webpackChunkName: 'page404' */),
   loading: Loader
@@ -26,6 +31,7 @@ const AppRoutes = (props) => (
     <RouteWrapper>
       <Switch>
         <Route path='/login' component={Login} />
+        <Route path='/signup' component={Signup} />
         <Route path='/404' component={PageNotAvailable} />
         <Redirect from='*' to='/404' />
       </Switch>

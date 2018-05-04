@@ -35,12 +35,10 @@ injectGlobal`
   :root {
     --primary-font: Avenir;
     --white: #ffffff;
-    --cobalt: #0a385c;
-    --silver: #e2e2e2;
-    --dark-grey: #444444;
-    --gray: #959595;
-    --light-gray: #efefef;
-    --primary-color: #4009a0;
+    --dark-gray: #444;
+    --dark-blue: #205870;
+    --gray: #777;
+    --button-blue: #4285f4;
   }
 
   html,
