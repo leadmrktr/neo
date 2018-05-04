@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "NODE_ENV=development webpack-dev-server --config webpack.local.config.js",
-    "build:dev": "rimraf ./build-dev && NODE_ENV=development webpack --config webpack.dev.config.js --color --progress && cp manifest.json build-dev/manifest.json",
+    "build:dev": "rimraf ./build-dev && NODE_ENV=development webpack --config webpack.dev.config.js --color --progress ",
     "start:dev": "webpack-dev-server --config webpack.dev.config.js --content-base build-dev/ --port 9000 --history-api-fallback",
-    "build:prod": "rimraf ./build-prod && NODE_ENV=production webpack --config webpack.prod.config.js --color --progress && cp manifest.json build-prod/manifest.json",
+    "build:prod": "rimraf ./build-prod && NODE_ENV=production webpack --config webpack.prod.config.js --color --progress",
     "start:prod": "webpack-dev-server --config webpack.prod.config.js --content-base build-prod/ --port 9000 --history-api-fallback"
   },
   "repository": "git@github.com:leadmrktr/neo.git",
