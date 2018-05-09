@@ -15,11 +15,16 @@ const ButtonContainer = styled.button`
   width: 10em;
   font-size: 1em;
   border: none;
+  outline: none;
+  cursor: pointer;
+  &:disabled {
+    cursor: not-allowed;
+  }
 `
 
 const Button = (props) => {
   return (
-    <ButtonContainer onClick={props.onClick}>{props.label}</ButtonContainer>
+    <ButtonContainer onClick={props.onClick} {...props}>{props.label}</ButtonContainer>
   )
 }
 

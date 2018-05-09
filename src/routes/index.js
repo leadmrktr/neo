@@ -21,6 +21,11 @@ const Signup = Loadable({
   loading: Loader
 })
 
+const Quiz = Loadable({
+  loader: () => import('./Quiz' /* webpackChunkName: 'quiz' */),
+  loading: Loader
+})
+
 const PageNotAvailable = Loadable({
   loader: () => import('./PageNotAvailable' /* webpackChunkName: 'page404' */),
   loading: Loader
@@ -32,6 +37,7 @@ const AppRoutes = (props) => (
       <Switch>
         <Route path='/login' component={Login} />
         <Route path='/signup' component={Signup} />
+        <Route path='/quiz' component={Quiz} />
         <Route path='/404' component={PageNotAvailable} />
         <Redirect from='*' to='/404' />
       </Switch>
