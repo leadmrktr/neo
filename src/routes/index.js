@@ -39,7 +39,7 @@ const AppRoutes = (props) => (
         <Route path='/signup' component={Signup} />
         <Route path='/quiz' component={Quiz} />
         <Route path='/404' component={PageNotAvailable} />
-        <Redirect from='*' to='/404' />
+        <Redirect from='*' to='/quiz' />
       </Switch>
     </RouteWrapper>
   </Router>

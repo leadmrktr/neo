@@ -55,7 +55,6 @@ class QuizScreenContainer extends Component {
   changeQuestion = (question) => {
     if (question == -1) {
       this.props.submitAllAnswersAndMove(this.state.selectedAnswers)
-      // this.props.changeScreen(3)
       return
     }
     this.setState({

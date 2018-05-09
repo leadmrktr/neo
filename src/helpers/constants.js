@@ -106,8 +106,31 @@ in the best way possible to get an accurate result.`,
   }
 }
 
+const QUIZ_OUTCOMES = {
+  '1': {
+    score: 'Your team is Awesome, following are the industry standards and your team works through them'
+  },
+  '2': {
+    score: 'Average, there are slight delays that are affecting customer service. Most probable causes are listed below',
+    details: [
+      'Too many tickets are coming your team’s way',
+      'Extended dependency on third party (tech teams etc) are causing delays in response',
+      'Customers do not understand the product and questions are popping up because of it'
+    ]
+  },
+  '3': {
+    score: 'Poor, you need to change things up urgently \n According to an oracle survey customer would max wait for 48 to 72 hours before deciding to find an alternative. \n Additionally, you might have to look into your documentation and other customer support resources including your team. \n Some of the reasons for a poor performance can be',
+    details: [
+      'Customer do not understand your system at all, leading to trivial queries like password reset being sent as tickets',
+      'You either don’t have a support team or have a team which is not used to handling customer queries. Refer this article to understand hiring',
+      'On top of having too many queries, your team is left doing repetitive tasks. Try automating, this should help decrease ticket by at least 25%'
+    ]
+  }
+}
+
 const neoConstants = {
-  QUESTION_ANSWER_MAP
+  QUESTION_ANSWER_MAP,
+  QUIZ_OUTCOMES
 }
 
 export default neoConstants;

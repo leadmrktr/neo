@@ -8,6 +8,7 @@ const defaultProps = {}
 class QuizSubmission extends Component {
 
   render () {
+    const { selectedAnswers } = this.props;
     return (
       <div>
         quiz submission scree
