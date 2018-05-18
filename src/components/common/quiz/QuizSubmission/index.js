@@ -107,7 +107,7 @@ class QuizSubmission extends Component {
 
   validateEmail = (email) => {
     if (this.emailRegx.test(email)) {
-      this.changeScreen(2)
+      this.props.saveUserDetails(email, ()=>{this.changeScreen(2)})
       return;
     }
     this.setState({emailError: 'Please enter a valid email'})
@@ -125,15 +125,16 @@ class QuizSubmission extends Component {
   }
 
   calculateOutcomeFromAnswerList = (answers) => {
-    let filteredArray = answers.filter((answer) => {
-      return answer.outcome
+    let answersArray = Object.keys(answers).map((value) => {
+      return answers[value];
+    }).filter((answer) => {
+      return answer && answer.outcome
     })
     let total = 0
-    filteredArray.forEach((answer) => {
+    answersArray.forEach((answer) => {
       total += answer.outcome
     })
-
-    return Math.round((total/filteredArray.length), 0)
+    return Math.round((total/answersArray.length), 0)
   }
 
   renderEmailScreen () {

@@ -40,6 +40,30 @@ const Answer = styled.input`
   font-size: 2em;
 `
 
+const QuizNavigationContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  margin: auto;
+  height: 60px;
+`
+
+const EachNavBlock = styled.div`
+  width: 15px;
+  height: 15px;
+  margin: 5px;
+  border-radius: 2px;
+  background: #ccc;
+  cursor: pointer;
+  ${props => props.selected && css`
+    background: blue;
+  `}
+  ${props => props.answered && css`
+    background: #56b856;
+  `}
+`
+
 class QuizScreenContainer extends Component {
 
   constructor (props) {
@@ -48,7 +72,9 @@ class QuizScreenContainer extends Component {
       currentQues: 0,
       nextQues: 1,
       name: '',
-      selectedAnswers: []
+      selectedAnswers: {},
+      totalQuestions: Object.keys(QUESTION_ANSWER_MAP).length,
+      isNotAllAnswered: false
     };
   }
 
@@ -63,15 +89,46 @@ class QuizScreenContainer extends Component {
     })
   }
 
+  forceMoveToResult = () => {
+    this.props.submitAllAnswersAndMove(this.state.selectedAnswers)
+  }
+
   saveAnswerAndMove = (quizObj, selectedAnswer) => {
     const { selectedAnswers } = this.state;
-    selectedAnswers.push(selectedAnswer);
+    let questionId = quizObj['current']
+    selectedAnswers[questionId] = selectedAnswer;
     this.setState({selectedAnswers: selectedAnswers})
-    this.changeQuestion(quizObj.next)
+    if (quizObj.next > -1 || (Object.keys(selectedAnswers).length == this.state.totalQuestions)) {
+      this.changeQuestion(quizObj.next)
+      return;
+    }
+    // if (Object.keys(selectedAnswers).length < this.state.totalQuestions)
+    this.setState({isNotAllAnswered: true})
   }
 
   handleInput = (e) => {
     this.setState({name: e.target.value})
+  }
+
+  saveName = () => {
+    this.props.saveUserName(this.state.name)
+    this.changeQuestion(1)
+  }
+
+  renderQuestionNavigation = () => {
+    if (this.state.currentQues > 0) {
+      return (
+        <QuizNavigationContainer>
+          {
+            Object.keys(QUESTION_ANSWER_MAP).map((value, index) => {
+              return (
+                <EachNavBlock key={index} onClick={() => this.changeQuestion(value)} selected={parseInt(value) == this.state.currentQues} answered={this.state.selectedAnswers[value]}/>
+              )
+            })
+          }
+        </QuizNavigationContainer>
+      )
+    }
   }
 
   renderNameInput () {
@@ -80,7 +137,7 @@ class QuizScreenContainer extends Component {
         <NameInputContainer>
           <Question>What is your name?</Question>
           <Answer value={this.state.name} placeholder="Enter name" onChange={this.handleInput} type="text" />
-          <Button disabled={this.state.name.length < 3} label="Next" onClick={() => this.changeQuestion(1)} />
+        <Button disabled={this.state.name.length < 3} label="Next" onClick={() => this.saveName()} />
         </NameInputContainer>
       </QuizTransitionContainer>
     )
@@ -96,6 +153,9 @@ class QuizScreenContainer extends Component {
             changeQuestion={this.changeQuestion}
             name={this.state.name}
             saveAnswerAndMove={this.saveAnswerAndMove}
+            selectedAnswers={this.state.selectedAnswers}
+            forceMoveToResult={this.forceMoveToResult}
+            isNotAllAnswered={this.state.isNotAllAnswered}
           />
         </QuizTransitionContainer>
       )
@@ -106,6 +166,7 @@ class QuizScreenContainer extends Component {
     const { changeScreen } = this.props
     return (
       <QuizSectionContainer>
+        {this.renderQuestionNavigation()}
         {this.renderNameInput()}
         {this.renderEachQuestionScreen()}
       </QuizSectionContainer>

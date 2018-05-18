@@ -54,6 +54,13 @@ const EachAnswer = styled.div`
   }
 `
 
+const ButtonWarning = styled.p`
+  display: block;
+  margin: 1em 0em;
+  color: #bd1b1b;
+  font-size: .9em;
+`
+
 class QuizScreen extends Component {
 
   constructor(props){
@@ -62,17 +69,21 @@ class QuizScreen extends Component {
   }
 
   updateAnswer = (answerObj) => {
+    const { quizObj, saveAnswerAndMove } = this.props;
     this.setState({selectedAnswer: answerObj})
+    saveAnswerAndMove(quizObj, answerObj)
   }
 
   renderMultipleAnswers = () => {
-    const { quizObj } = this.props;
+    const { quizObj, selectedAnswers } = this.props;
     const { selectedAnswer } = this.state
     return (
       <Answers>
         {
           quizObj.answers.map((answerObj, index) => {
             let className = selectedAnswer && (answerObj.id == selectedAnswer.id)? 'selected': '';
+            if (selectedAnswers[quizObj.current] && selectedAnswers[quizObj.current].id == answerObj.id)
+              className = 'selected'
             return (
               <EachAnswer onClick={() => this.updateAnswer(answerObj) } className={className} key={index}>
                 {answerObj.value}
@@ -85,14 +96,15 @@ class QuizScreen extends Component {
   }
 
   render () {
-    const { changeQuestion, quizObj, name, saveAnswerAndMove } = this.props
+    const { changeQuestion, quizObj, name, forceMoveToResult, isNotAllAnswered } = this.props
     return (
       <QuestionSection>
         {quizObj.mainHead && <MainHead>{quizObj.mainHead(name)}</MainHead>}
         <EachQuestion>
           <Question>{quizObj.question}</Question>
           {quizObj.isMultiple && this.renderMultipleAnswers()}
-          <Button disabled={!this.state.selectedAnswer} type="button" label="Next" onClick={() => saveAnswerAndMove(quizObj, this.state.selectedAnswer)} />
+          {isNotAllAnswered && <ButtonWarning>You haven't answered all the question. Click on the button will skip all the unanswered questions</ButtonWarning>}
+          {isNotAllAnswered && <Button type="button" label="Show result" onClick={forceMoveToResult} />}
         </EachQuestion>
       </QuestionSection>
     )

@@ -1,17 +1,10 @@
 import {combineReducers} from "redux";
 import login from "./login";
+import user from './user'
 
 const appReducer = combineReducers({
-  login
+  login,
+  user
 });
 
-const rootReducer = (state, action) => {
-	// clearing state on logout
-  if (action.type === "USER_LOGOUT") {
-    state = undefined;
-  }
-
-  return appReducer(state, action);
-};
-
-export default rootReducer;
+export default appReducer;

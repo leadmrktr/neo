@@ -1,15 +1,17 @@
 import {createStore, applyMiddleware, compose, combineReducers} from "redux";
 import thunk from "redux-thunk";
 import {createLogger} from "redux-logger";
-import rootReducer from "../src/reducers/index";
+import appReducer from "../reducers/index";
 import { routerReducer } from 'react-router-redux'
+
+console.log("appReducer", appReducer);
 
 const logger = createLogger();
 
 export default function configureStore (initialState) {
   const store = createStore(
     combineReducers({
-      ...rootReducer,
+      appReducer,
       routing: routerReducer
     }),
     initialState,

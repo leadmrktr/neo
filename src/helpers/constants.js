@@ -1,8 +1,15 @@
+// API constants
+
+const API_SAVE_USER_DETAILS = 'http://sarathsp06.pythonanywhere.com/save'
+const API_GET_USERS = 'http://sarathsp06.pythonanywhere.com/users'
+
+
 const QUESTION_ANSWER_MAP = {
   '1': {
     question: 'What is your Approx. average first response time?',
     isMultiple: true,
     next: 2,
+    current: 1,
     mainHead: (name) => `Hi ${name}, Following questions are designed to evaluate your support team. Answer the questions
 in the best way possible to get an accurate result.`,
     answers: [
@@ -37,6 +44,7 @@ in the best way possible to get an accurate result.`,
     question: 'What’s your average resolution time?',
     isMultiple: true,
     next: 3,
+    current: 2,
     answers: [
       {
         value: '0 to 24 hours ',
@@ -59,6 +67,7 @@ in the best way possible to get an accurate result.`,
     question: 'What’s your customers average waiting time on the queue?',
     isMultiple: true,
     next: 4,
+    current: 3,
     answers: [
       {
         value: '0 to 3 minutes ',
@@ -86,6 +95,7 @@ in the best way possible to get an accurate result.`,
     question: 'How many tickets your agents handle on an average per month?',
     isMultiple: true,
     next: -1,
+    current: 4,
     answers: [
       {
         value: 'Less than 300',
@@ -108,7 +118,8 @@ in the best way possible to get an accurate result.`,
 
 const QUIZ_OUTCOMES = {
   '1': {
-    score: 'Your team is Awesome, following are the industry standards and your team works through them'
+    score: 'Your team is Awesome, following are the industry standards and your team works through them',
+    details: []
   },
   '2': {
     score: 'Average, there are slight delays that are affecting customer service. Most probable causes are listed below',
@@ -130,7 +141,9 @@ const QUIZ_OUTCOMES = {
 
 const neoConstants = {
   QUESTION_ANSWER_MAP,
-  QUIZ_OUTCOMES
+  QUIZ_OUTCOMES,
+  API_SAVE_USER_DETAILS,
+  API_GET_USERS
 }
 
 export default neoConstants;

@@ -8,7 +8,7 @@ import AppRoutes from './routes'
 import { Provider } from 'react-redux'
 import { browserHistory } from 'react-router'
 import { syncHistoryWithStore } from 'react-router-redux'
-import configureStore from "../store";
+import configureStore from "./store";
 import { createBrowserHistory } from 'history';
 
 const store = configureStore();
