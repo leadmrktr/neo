@@ -9,7 +9,6 @@ const recieveSubmitUserDetails = (userData) => {
 
 export const saveUserData = (data, callback) => {
   return (dispatch) => {
-    dispatch(recieveSubmitUserDetails(data))
     return neoRequest.post(neoConstants.API_SAVE_USER_DETAILS, data)
       .then((res) => {
         dispatch(recieveSubmitUserDetails(res.data))
