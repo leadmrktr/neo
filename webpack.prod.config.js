@@ -30,9 +30,10 @@ module.exports = {
       },
       {
         test: /\.js?$/,
-        use: [
-          'babel-loader',
-        ],
+        loader: 'babel-loader',
+        query:{
+          presets: ['es2015','react','stage-0']
+        },
         exclude: /node_modules/,
       },
       {
