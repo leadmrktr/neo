@@ -1,7 +1,7 @@
 // API constants
 
-const API_SAVE_USER_DETAILS = 'http://sarathsp06.pythonanywhere.com/save'
-const API_GET_USERS = 'http://sarathsp06.pythonanywhere.com/users'
+const API_SAVE_USER_DETAILS = 'https://sarathsp06.pythonanywhere.com/save'
+const API_GET_USERS = 'https://sarathsp06.pythonanywhere.com/users'
 
 
 const QUESTION_ANSWER_MAP = {
