@@ -21,6 +21,7 @@ const EmailInputContainer = styled.div`
   margin: auto;
   min-height: 100vh;
   justify-content: center;
+  width: 90%;
   button{
     margin-top: 2em;
   }
@@ -77,6 +78,7 @@ const ResultSection = styled.div`
   height: 100%;
   box-shadow: 0px 0px 4px 1px #ddd;
   padding: 2em;
+  width: 90%;
 `
 
 const Result = styled.p`

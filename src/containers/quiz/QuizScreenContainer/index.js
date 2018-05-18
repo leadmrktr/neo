@@ -21,6 +21,7 @@ const NameInputContainer = styled.div`
   margin: auto;
   min-height: 100vh;
   justify-content: center;
+  width: 90%;
 `
 
 const Question = styled.h2`
