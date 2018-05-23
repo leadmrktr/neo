@@ -8,7 +8,7 @@ const propTypes = {}
 const defaultProps = {}
 
 const IntroScreen = styled.div`
-  min-height: 100vh;
+  min-height: calc(100vh - 60px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -42,7 +42,7 @@ class QuizIntroScreen extends Component {
       <IntroScreen>
         <IntroCard>
           <Heading>How efficient is your support?</Heading>
-          <Text>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley </Text>
+          <Text>4 quick questions to understand how your support team stands w.r.t SAAS industry standards </Text>
           <Button label="Start" onClick={() => changeScreen (2)} />
         </IntroCard>
       </IntroScreen>

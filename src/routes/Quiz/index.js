@@ -10,12 +10,28 @@ import {
 } from 'components'
 import { QuizScreenContainer } from 'containers'
 import { saveUserData } from 'actions'
+import { GlobalImages } from 'assets'
 
 const propTypes = {}
 const defaultProps = {}
 
 const QuizSectionContainer = styled.div`
 
+`
+
+const PoweredBy = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+  color: #999;
+  font-size: .9em;
+  background: #f7f7f7;
+`
+
+const Image = styled.img`
+  height: 22px;
+  margin-left: 5px;
 `
 
 class Quiz extends Component {
@@ -76,6 +92,12 @@ class Quiz extends Component {
             saveUserDetails={this.saveUserDetails}
           />
         </QuizTransitionContainer>
+        <PoweredBy>
+          by
+          <a href="https://www.kommunicate.io/" rel="noopener" target="_blank">
+            <Image src={GlobalImages.kommunicateLogo} />
+          </a>
+        </PoweredBy>
       </QuizSectionContainer>
     )
   }

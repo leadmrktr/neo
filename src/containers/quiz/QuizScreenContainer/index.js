@@ -19,7 +19,7 @@ const NameInputContainer = styled.div`
   flex-direction: column;
   max-width: 600px;
   margin: auto;
-  min-height: 100vh;
+  min-height: calc(100vh - 60px);
   justify-content: center;
   width: 90%;
 `
@@ -48,6 +48,10 @@ const QuizNavigationContainer = styled.div`
   width: 90%;
   margin: auto;
   height: 60px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 10;
 `
 
 const EachNavBlock = styled.div`

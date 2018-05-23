@@ -38,6 +38,7 @@ const AppRoutes = (props) => (
         <Route path='/login' component={Login} />
         <Route path='/signup' component={Signup} />
         <Route path='/quiz' component={Quiz} />
+        <Route path='/how-good-is-your-support' component={Quiz} />
         <Route path='/404' component={PageNotAvailable} />
         <Redirect from='*' to='/quiz' />
       </Switch>

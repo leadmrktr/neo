@@ -12,9 +12,10 @@ const QuestionSection = styled.div`
   flex-direction: column;
   max-width: 700px;
   margin: auto;
-  min-height: 100vh;
+  min-height: calc(100vh - 60px);
   justify-content: center;
   width: 90%;
+  padding-top: 60px;
 `
 
 const EachQuestion = styled.div`

@@ -19,7 +19,7 @@ const EmailInputContainer = styled.div`
   flex-direction: column;
   max-width: 600px;
   margin: auto;
-  min-height: 100vh;
+  min-height: calc(100vh - 60px);
   justify-content: center;
   width: 90%;
   button{
@@ -62,7 +62,7 @@ const EmailError = styled.p`
 
 const ResultContainer = styled.div`
   margin: auto;
-  min-height: 100vh;
+  min-height: calc(100vh - 60px);
   display: flex;
   align-items: center;
   justify-content: center;
