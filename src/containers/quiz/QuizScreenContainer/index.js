@@ -115,7 +115,8 @@ class QuizScreenContainer extends Component {
     this.setState({name: e.target.value})
   }
 
-  saveName = () => {
+  saveName = (e) => {
+    e.preventDefault();
     this.props.saveUserName(this.state.name)
     this.changeQuestion(1)
   }
@@ -139,11 +140,13 @@ class QuizScreenContainer extends Component {
   renderNameInput () {
     return (
       <QuizTransitionContainer visible={this.state.currentQues == 0}>
-        <NameInputContainer>
-          <Question>What is your name?</Question>
-          <Answer value={this.state.name} placeholder="Enter name" onChange={this.handleInput} type="text" />
-        <Button disabled={this.state.name.length < 3} label="Next" onClick={() => this.saveName()} />
-        </NameInputContainer>
+        <form onSubmit={() => this.saveName()}>
+          <NameInputContainer>
+            <Question>What is your name?</Question>
+            <Answer value={this.state.name} placeholder="Enter name" onChange={this.handleInput} type="text" />
+            <Button disabled={this.state.name.length < 3} label="Next" type="submit" />
+          </NameInputContainer>
+        </form>
       </QuizTransitionContainer>
     )
   }

@@ -118,11 +118,17 @@ in the best way possible to get an accurate result.`,
 
 const QUIZ_OUTCOMES = {
   '1': {
-    score: 'Your team is Awesome, following are the industry standards and your team works through them',
+    head: 'You are AWESOME!',
+    score: 'Don’t change a thing! stick to whatever you are doing and you would achieve Nirvana :) \n\nThough you should consider some technological advances in your industry, if you aren’t already!',
+    link: {
+      text: 'Automations in Support Industry',
+      ref: 'https://blog.kommunicate.io/how-to-improve-customer-support-8a3b5851c990'
+    },
     details: []
   },
   '2': {
-    score: 'Average, there are slight delays that are affecting customer service. Most probable causes are listed below',
+    head: 'Average',
+    score: 'there are slight delays that are affecting customer service. Most probable causes are listed below',
     details: [
       'Too many tickets are coming your team’s way',
       'Extended dependency on third party (tech teams etc) are causing delays in response',
