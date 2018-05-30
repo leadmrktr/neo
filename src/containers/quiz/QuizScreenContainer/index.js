@@ -14,7 +14,7 @@ const QuizSectionContainer = styled.div`
 
 `
 
-const NameInputContainer = styled.div`
+const NameInputContainer = styled.form`
   display: flex;
   flex-direction: column;
   max-width: 600px;
@@ -116,7 +116,7 @@ class QuizScreenContainer extends Component {
   }
 
   saveName = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     this.props.saveUserName(this.state.name)
     this.changeQuestion(1)
   }
@@ -140,13 +140,11 @@ class QuizScreenContainer extends Component {
   renderNameInput () {
     return (
       <QuizTransitionContainer visible={this.state.currentQues == 0}>
-        <form onSubmit={() => this.saveName()}>
-          <NameInputContainer>
-            <Question>What is your name?</Question>
-            <Answer value={this.state.name} placeholder="Enter name" onChange={this.handleInput} type="text" />
-            <Button disabled={this.state.name.length < 3} label="Next" type="submit" />
-          </NameInputContainer>
-        </form>
+        <NameInputContainer onSubmit={this.saveName}>
+          <Question>What is your name?</Question>
+          <Answer value={this.state.name} placeholder="Enter name" onChange={this.handleInput} type="text" />
+          <Button disabled={this.state.name.length < 3} label="Next" type="submit" />
+        </NameInputContainer>
       </QuizTransitionContainer>
     )
   }

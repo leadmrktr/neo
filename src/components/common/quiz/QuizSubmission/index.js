@@ -14,7 +14,7 @@ const QuizSubmissionSection = styled.div`
 
 `
 
-const EmailInputContainer = styled.div`
+const EmailInputContainer = styled.form`
   display: flex;
   flex-direction: column;
   max-width: 600px;
@@ -113,7 +113,9 @@ class QuizSubmission extends Component {
     };
   }
 
-  validateEmail = (email) => {
+  validateEmail = (e) => {
+    e.preventDefault()
+    const { email } = this.state
     if (this.emailRegx.test(email)) {
       // this.props.saveUserDetails(email, ()=>{this.changeScreen(2)})
       // cheange this to the above one later
@@ -150,16 +152,14 @@ class QuizSubmission extends Component {
 
   renderEmailScreen () {
     return (
-      <EmailInputContainer>
-        <form onSubmit={() => this.validateEmail(this.state.email)}>
-          <Question>
-            <Heading>Tell us your Email ID</Heading>
-            <SubHead>(We will send the result to this email ID)</SubHead>
-          </Question>
-          <Answer value={this.state.email} onChange={this.handleEmail} type="email" placeholder="eg: abc@xyz.com" />
-          <EmailError>{this.state.emailError}</EmailError>
-          <Button disabled={this.state.email.length < 3} label="See the result" onClick={() => this.validateEmail(this.state.email)} type="submit" />
-        </form>
+      <EmailInputContainer onSubmit={this.validateEmail}>
+        <Question>
+          <Heading>Tell us your Email ID</Heading>
+          <SubHead>(We will send the result to this email ID)</SubHead>
+        </Question>
+        <Answer value={this.state.email} onChange={this.handleEmail} type="email" placeholder="eg: abc@xyz.com" />
+        <EmailError>{this.state.emailError}</EmailError>
+        <Button disabled={this.state.email.length < 3} label="See the result" type="submit" />
       </EmailInputContainer>
     )
   }
