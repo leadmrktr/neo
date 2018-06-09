@@ -94,7 +94,7 @@ class Quiz extends Component {
         </QuizTransitionContainer>
         <PoweredBy>
           by
-          <a href="https://www.kommunicate.io/" rel="noopener" target="_blank">
+          <a href="https://www.kommunicate.io/?utm_source=QUIZ&utm_medium=manual&utm_campaign=good_is_your_support&utm_term=Customer%20support&utm_content=Quiz" rel="noopener" target="_blank">
             <Image src={GlobalImages.kommunicateLogo} />
           </a>
         </PoweredBy>
