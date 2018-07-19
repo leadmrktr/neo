@@ -31,6 +31,11 @@ const PageNotAvailable = Loadable({
   loading: Loader
 })
 
+const BossQuiz = Loadable({
+  loader: () => import('./BossQuiz' /* webpackChunkName: 'bossQuiz' */),
+  loading: Loader
+})
+
 const AppRoutes = (props) => (
   <Router history={props.history}>
     <RouteWrapper>
@@ -39,6 +44,7 @@ const AppRoutes = (props) => (
         <Route path='/signup' component={Signup} />
         <Route path='/quiz' component={Quiz} />
         <Route path='/how-good-is-your-support' component={Quiz} />
+        <Route path='/what-type-of-boss-are-you' component={BossQuiz} />
         <Route path='/404' component={PageNotAvailable} />
         <Redirect from='*' to='/quiz' />
       </Switch>

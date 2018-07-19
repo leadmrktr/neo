@@ -71,11 +71,13 @@ class Quiz extends Component {
 
   render () {
     const { currentScreen, selectedAnswers } = this.state
+    const { type } = this.props
     return(
       <QuizSectionContainer>
         <QuizTransitionContainer visible={currentScreen == 1}>
           <QuizIntroScreen
             changeScreen={this.changeScreen}
+            type={type}
           />
         </QuizTransitionContainer>
         <QuizTransitionContainer visible={currentScreen == 2}>
@@ -83,6 +85,7 @@ class Quiz extends Component {
             changeScreen={this.changeScreen}
             submitAllAnswersAndMove={this.submitAllAnswersAndMove}
             saveUserName={this.saveUserName}
+            type={type}
           />
         </QuizTransitionContainer>
         <QuizTransitionContainer visible={currentScreen == 3}>
@@ -90,6 +93,7 @@ class Quiz extends Component {
             changeScreen={this.changeScreen}
             selectedAnswers={selectedAnswers}
             saveUserDetails={this.saveUserDetails}
+            type={type}
           />
         </QuizTransitionContainer>
         <PoweredBy>

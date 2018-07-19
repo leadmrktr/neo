@@ -36,8 +36,26 @@ const Text = styled.p`
 
 class QuizIntroScreen extends Component {
 
+  renderTypeTwoIntro = () => {
+    const { changeScreen } = this.props;
+    return (
+      <IntroScreen>
+        <IntroCard>
+          <Heading>What type of boss are you?</Heading>
+          <Text>5 quick questions to understand what type of boss are you w.r.t SAAS industry standards </Text>
+          <Button label="Start" onClick={() => changeScreen (2)} />
+        </IntroCard>
+      </IntroScreen>
+    )
+  }
+
   render () {
     const { changeScreen } = this.props;
+    const { type } = this.props;
+    console.log("type here", type);
+    if (type === 2) {
+      return this.renderTypeTwoIntro()
+    }
     return (
       <IntroScreen>
         <IntroCard>

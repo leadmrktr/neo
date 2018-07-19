@@ -5,7 +5,7 @@ import styled, { css } from 'styled-components'
 import { QuizScreen, QuizTransitionContainer, Button } from 'components'
 import { neoConstants } from 'helpers'
 
-const { QUESTION_ANSWER_MAP } = neoConstants
+const { QUESTION_ANSWER_MAP, WHAT_TYPE_OF_BOSS_ARE_YOU } = neoConstants
 
 const propTypes = {}
 const defaultProps = {}
@@ -74,13 +74,25 @@ class QuizScreenContainer extends Component {
   constructor (props) {
   	super(props);
   	this.state = {
-      currentQues: 0,
-      nextQues: 1,
+      currentQues: 1,
+      nextQues: 2,
       name: '',
       selectedAnswers: {},
-      totalQuestions: Object.keys(QUESTION_ANSWER_MAP).length,
-      isNotAllAnswered: false
+      totalQuestions: this.props.type == 2? Object.keys(WHAT_TYPE_OF_BOSS_ARE_YOU).length: Object.keys(QUESTION_ANSWER_MAP).length,
+      isNotAllAnswered: false,
+      questionMap: this.props.type == 2? WHAT_TYPE_OF_BOSS_ARE_YOU: QUESTION_ANSWER_MAP
     };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.type !== this.props.type) {
+      this.setState(
+        {
+          totalQuestions: nextProps.type == 2? Object.keys(WHAT_TYPE_OF_BOSS_ARE_YOU).length: Object.keys(QUESTION_ANSWER_MAP).length,
+          questionMap: nextProps.type == 2? WHAT_TYPE_OF_BOSS_ARE_YOU: QUESTION_ANSWER_MAP
+        }
+      )
+    }
   }
 
   changeQuestion = (question) => {
@@ -90,7 +102,7 @@ class QuizScreenContainer extends Component {
     }
     this.setState({
       currentQues: question,
-      nextQues: QUESTION_ANSWER_MAP[question].next
+      nextQues: this.state.questionMap[question].next
     })
   }
 
@@ -126,7 +138,7 @@ class QuizScreenContainer extends Component {
       return (
         <QuizNavigationContainer>
           {
-            Object.keys(QUESTION_ANSWER_MAP).map((value, index) => {
+            Object.keys(this.state.questionMap).map((value, index) => {
               return (
                 <EachNavBlock key={index} onClick={() => this.changeQuestion(value)} selected={parseInt(value) == this.state.currentQues} answered={this.state.selectedAnswers[value]}/>
               )
@@ -150,8 +162,9 @@ class QuizScreenContainer extends Component {
   }
 
   renderEachQuestionScreen () {
-    return Object.keys(QUESTION_ANSWER_MAP).map((value, index) => {
-      const eachQandA = QUESTION_ANSWER_MAP[value]
+    const { questionMap } = this.state;
+    return Object.keys(questionMap).map((value, index) => {
+      const eachQandA = questionMap[value]
       return (
         <QuizTransitionContainer visible={this.state.currentQues == value} key={index}>
           <QuizScreen

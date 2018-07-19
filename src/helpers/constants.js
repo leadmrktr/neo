@@ -145,11 +145,214 @@ const QUIZ_OUTCOMES = {
   }
 }
 
+const WHAT_TYPE_OF_BOSS_ARE_YOU = {
+  '1': {
+    question: 'What do you think of your employees?',
+    isMultiple: true,
+    next: 2,
+    current: 1,
+    answers: [
+      {
+        value: 'They are here to do their job and I don’t care',
+        outcome: 4,
+        id: 1
+      },
+      {
+        value: 'They are family, I love’em',
+        outcome: 2,
+        id: 2
+      },
+      {
+        value: 'They are cool but work is work',
+        outcome: 1,
+        id: 3
+      },
+      {
+        value: 'They are gullible, I act as if I care but I don’t actually',
+        outcome: 2,
+        id: 4
+      },
+      {
+        value: 'I love my employees , we are a team we work together in and out of office to meet our goals',
+        outcome: 3,
+        id: 5
+      }
+    ]
+  },
+  '2': {
+    question: 'Numbers are low across the board what do you do?',
+    isMultiple: true,
+    next: 3,
+    current: 2,
+    answers: [
+      {
+        value: 'Get the entire team in a room and give them a verbal beat down',
+        outcome: 4,
+        id: 1
+      },
+      {
+        value: 'Bring the team together and figure out what the problem is ( roost cause analysis) and try to solve it together',
+        outcome: 1,
+        id: 2
+      },
+      {
+        value: 'Let them go for once, they are people too',
+        outcome: 3,
+        id: 3
+      },
+      {
+        value: 'Something must be wrong, You would try to figure this out yourself',
+        outcome: 2,
+        id: 4
+      }
+    ]
+  },
+  '3': {
+    question: 'Your boss gave you a task that needs to be done today, what do you do?',
+    isMultiple: true,
+    next: 4,
+    current: 3,
+    answers: [
+      {
+        value: 'Dump it all to your team and give them a deadline of half a day',
+        outcome: 4,
+        id: 1
+      },
+      {
+        value: 'Do it all by yourself',
+        outcome: 2,
+        id: 2
+      },
+      {
+        value: 'Get everyone together and try to finish it together',
+        outcome: 1,
+        id: 3
+      },
+      {
+        value: 'Tell your boss it might not be possible but you would try to finish it with your team',
+        outcome: 3,
+        id: 4
+      }
+    ]
+  },
+  '4': {
+    question: 'How much do your employees know about you?',
+    isMultiple: true,
+    next: 5,
+    current: 4,
+    answers: [
+      {
+        value: 'They don’t need to know',
+        outcome: 2,
+        id: 1
+      },
+      {
+        value: 'Enough to have a friendly banter',
+        outcome: 4,
+        id: 2
+      },
+      {
+        value: 'They are family. I share everything with them',
+        outcome: 1,
+        id: 3
+      },
+      {
+        value: 'I don’t actively share unless they ask for it',
+        outcome: 3,
+        id: 4
+      }
+    ]
+  },
+  '5': {
+    question: 'Your team member did a real good job, what do you do?',
+    isMultiple: true,
+    next: -1,
+    current: 5,
+    answers: [
+      {
+        value: 'Give him a pat and tell him he did a good job',
+        outcome: 3,
+        id: 1
+      },
+      {
+        value: 'Buy him a small token of gift',
+        outcome: 1,
+        id: 2
+      },
+      {
+        value: 'Do nothing, he is already being paid for it',
+        outcome: 4,
+        id: 3
+      },
+      {
+        value: 'Wonder, if he can do better',
+        outcome: 2,
+        id: 4
+      }
+    ]
+  }
+}
+
+const BOSS_QUIZ_OUTCOMES = {
+  '1': {
+    head: 'The Boss Baby - Knows strengths and Weaknesses, the team player',
+    image: 'http://junkee.com/wp-content/uploads/2017/04/static1.squarespace.jpg',
+    details: [
+      'You are a born leadre. You understand your team mates strengths and weaknesses and have',
+      'learnt to give them jobs that they are good at.',
+      'You trust them but also understand where to step in.',
+      'You don’t micro-manage',
+      'You teach and nurture your reportees',
+      'You are awesome',
+      'You are the Boss !, everyone wants to work with'
+    ]
+  },
+  '2': {
+    head: 'Frank Underwood - House of Cards - The autocratic, cold blooded manipulator',
+    image: 'https://cnet4.cbsistatic.com/img/ALUr3p2ioUn8Vqjygby5JqKT02U=/1600x900/2016/03/22/980bdb5e-b015-417b-9f55-553d9ef29d52/02212014kevinspaceyhouseofcardsnetflix.jpg',
+    details: [
+      'You are the man no one wants to make an enemy of.',
+      'You know your reportees strengths',
+      'You hate that they have any weaknesses, because their weakness is your weakness',
+      'You are cold blooded, straight to the point and F** the emotions kinda guy.',
+      'People under either get destroyed or emerge to be power houses themselves',
+      'You are a master of the game, you do what needs to be done and whatever is good for you. Everyone else is just  Pawn',
+      'You are the king, you are are the Boss'
+    ]
+  },
+  '3': {
+    head: 'THE CHARLIE  from Charlie’s angels - You’ve raised them from ground up, they are family',
+    image: 'https://m.media-amazon.com/images/M/MV5BNWYwZTQ1MzgtYmIwNi00MDllLWEzZjQtNmQ2YmVlZjA0NzMzXkEyXkFqcGdeQXVyMzI4Nzk0NjY@._V1_.jpg',
+    details: [
+      'You are the mentor that everyone wants',
+      'You’ve bought up and nurtured your reportees to be better',
+      'Your employees are your kids ',
+      'You are protective of them but are stern when needed',
+      'You are Charlie, You are the Boss!'
+    ]
+  },
+  '4': {
+    head: 'Michael Scott from the Office- sink or swim you don’t care',
+    image: 'https://mutantreviewers.files.wordpress.com/2014/12/os13.jpg',
+    details: [
+      'You are really good at the tasks you were given as a frontline worker',
+      'Was made into a manager because there was no one else',
+      'You hate being a manager',
+      'You rather jump of a cliff.',
+      'You let your employees do whatever they want and don’t care as such',
+      'You waste most of your time procrastinating',
+      'You are NOT the Boss!'
+    ]
+  }
+}
+
 const neoConstants = {
   QUESTION_ANSWER_MAP,
   QUIZ_OUTCOMES,
   API_SAVE_USER_DETAILS,
-  API_GET_USERS
+  API_GET_USERS,
+  WHAT_TYPE_OF_BOSS_ARE_YOU,
+  BOSS_QUIZ_OUTCOMES
 }
 
 export default neoConstants;

@@ -5,7 +5,7 @@ import styled, { css } from 'styled-components'
 import { neoConstants } from 'helpers'
 import { Button, QuizTransitionContainer } from 'components'
 
-const { QUIZ_OUTCOMES } = neoConstants
+const { QUIZ_OUTCOMES, BOSS_QUIZ_OUTCOMES } = neoConstants
 
 const propTypes = {}
 const defaultProps = {}
@@ -98,6 +98,12 @@ const MoreResultsContainer = styled.ul`
 
 const EachResult = styled.li`
 
+`
+
+const Image = styled.img`
+  max-width: 500px;
+  margin: auto;
+  display: block;
 `
 
 
@@ -251,14 +257,25 @@ class QuizSubmission extends Component {
     }
   }
 
+  renderBossResult = (resultMap) => {
+    return (
+      <ResultSection>
+        <Result>{resultMap.head}</Result>
+        <Image src={resultMap.image}/>
+        {this.renderMoreResults(resultMap)}
+      </ResultSection>
+    )
+  }
+
   renderResultScreen () {
-    const { selectedAnswers } = this.props;
+    const { selectedAnswers, type } = this.props;
     const outcome = this.calculateOutcomeFromAnswerList(selectedAnswers)
-    const resultMap = QUIZ_OUTCOMES[outcome];
+    const resultMap = type !== 2? QUIZ_OUTCOMES[outcome]: BOSS_QUIZ_OUTCOMES[outcome];
     return (
       <ResultContainer>
         <Heading>Your result</Heading>
-          {this.renderResult(outcome)}
+          {type !== 2 && this.renderResult(outcome)}
+          {type === 2 && this.renderBossResult(resultMap)}
           {/* {this.renderMoreResults(resultMap)} */}
       </ResultContainer>
     );
