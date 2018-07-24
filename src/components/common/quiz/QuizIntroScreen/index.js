@@ -42,7 +42,8 @@ class QuizIntroScreen extends Component {
       <IntroScreen>
         <IntroCard>
           <Heading>What type of boss are you?</Heading>
-          <Text>5 quick questions to understand what type of boss are you w.r.t SAAS industry standards </Text>
+          <Text>If you are a boss at work or are planning to be one.  Answer the questions that follow and find out what TV boss would you be?
+Are you a tyrant evil dragon or are the boss baby?</Text>
           <Button label="Start" onClick={() => changeScreen (2)} />
         </IntroCard>
       </IntroScreen>
@@ -52,7 +53,6 @@ class QuizIntroScreen extends Component {
   render () {
     const { changeScreen } = this.props;
     const { type } = this.props;
-    console.log("type here", type);
     if (type === 2) {
       return this.renderTypeTwoIntro()
     }

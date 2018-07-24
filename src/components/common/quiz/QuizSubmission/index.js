@@ -4,6 +4,7 @@ import styled, { css } from 'styled-components'
 
 import { neoConstants } from 'helpers'
 import { Button, QuizTransitionContainer } from 'components'
+import { GlobalImages } from 'assets'
 
 const { QUIZ_OUTCOMES, BOSS_QUIZ_OUTCOMES } = neoConstants
 
@@ -107,6 +108,16 @@ const Image = styled.img`
   width: 90%;
 `
 
+const ShareSection = styled.div`
+  text-align: center;
+  img{
+    width: 40px;
+    margin: 0.5em .5em 2em;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+`
+
 
 class QuizSubmission extends Component {
 
@@ -155,6 +166,67 @@ class QuizSubmission extends Component {
       total += answer.outcome
     })
     return Math.round((total/answersArray.length), 0)
+  }
+
+  shareFBtoAll = () => {
+    const { type } = this.props;
+    let url = 'https://kommunicate.leadmrktr.com/'
+    switch (type) {
+      case 1:
+        url = 'https://kommunicate.leadmrktr.com/how-good-is-your-support'
+        break;
+      case 2:
+        url = 'https://kommunicate.leadmrktr.com/what-type-of-boss-are-you'
+        break;
+      default:
+        url = 'https://kommunicate.leadmrktr.com/'
+        break
+    }
+    FB.ui({
+      method: 'share',
+      display: 'popup',
+      href: `${url}`
+    }, response => {
+      if (response && !response.error_message) {
+        console.log('Posting completed.')
+      } else {
+        console.log('Error while posting.')
+      }
+    })
+  }
+
+  shareTw = () => {
+    const { type } = this.props;
+    let url = 'https://kommunicate.leadmrktr.com/'
+    switch (type) {
+      case 1:
+        url = 'https://kommunicate.leadmrktr.com/how-good-is-your-support'
+        break;
+      case 2:
+        url = 'https://kommunicate.leadmrktr.com/what-type-of-boss-are-you'
+        break;
+      default:
+        url = 'https://kommunicate.leadmrktr.com/'
+        break
+    }
+    window.open(`https://twitter.com/intent/tweet?${url}&original_referer=https://kommunicate.leadmrktr.com/&text=What type of boss are you? Are you a tyrant evil dragon or are the boss baby? ${url}`)
+  }
+
+  shareLinkin = () => {
+    const { type } = this.props;
+    let url = 'https://kommunicate.leadmrktr.com/'
+    switch (type) {
+      case 1:
+        url = 'https://kommunicate.leadmrktr.com/how-good-is-your-support'
+        break;
+      case 2:
+        url = 'https://kommunicate.leadmrktr.com/what-type-of-boss-are-you'
+        break;
+      default:
+        url = 'https://kommunicate.leadmrktr.com/'
+        break
+    }
+    window.open(`https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=kommunicate-Leadmrktr`)
   }
 
   renderEmailScreen () {
@@ -278,6 +350,11 @@ class QuizSubmission extends Component {
           {type !== 2 && this.renderResult(outcome)}
           {type === 2 && this.renderBossResult(resultMap)}
           {/* {this.renderMoreResults(resultMap)} */}
+          <ShareSection>
+            <img src={GlobalImages.fbLogo} alt="" onClick={this.shareFBtoAll} />
+            <img src={GlobalImages.twitterLogo} alt="" onClick={this.shareTw} />
+            <img src={GlobalImages.linkedinLogo} alt="" onClick={this.shareLinkin} />
+          </ShareSection>
       </ResultContainer>
     );
   }
