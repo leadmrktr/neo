@@ -118,6 +118,17 @@ const ShareSection = styled.div`
   }
 `
 
+const ButtonContainer = styled.div`
+
+`
+
+const SkipEmail = styled.span`
+  color: #838282;
+  margin-left: 1em;
+  border-bottom: 1px solid;
+  cursor: pointer;
+`
+
 
 class QuizSubmission extends Component {
 
@@ -142,6 +153,10 @@ class QuizSubmission extends Component {
       return;
     }
     this.setState({emailError: 'Please enter a valid email'})
+  }
+
+  skipEmail = () => {
+    this.changeScreen(2)
   }
 
   changeScreen = (screen) => {
@@ -238,7 +253,10 @@ class QuizSubmission extends Component {
         </Question>
         <Answer value={this.state.email} onChange={this.handleEmail} type="email" placeholder="eg: abc@xyz.com" />
         <EmailError>{this.state.emailError}</EmailError>
-        <Button disabled={this.state.email.length < 3} label="See the result" type="submit" />
+        <ButtonContainer>
+          <Button disabled={this.state.email.length < 3} label="See the result" type="submit" />
+          <SkipEmail onClick={this.skipEmail}>Skip & See The Result</SkipEmail>
+        </ButtonContainer>
       </EmailInputContainer>
     )
   }
